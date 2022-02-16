@@ -16,7 +16,72 @@
   <h2>{{ selectedUser.name | uppercase }} Details</h2>
   <div>id: {{ selectedUser.id }}</div>
   <div>
-    <label for="user-name">User name: </label>
-    <input id="user-name" [(ngModel)]="selectedUser.name" placeholder="name" />
+    <label for="name"> name: </label>
+    <input id="name" [(ngModel)]="selectedUser.name" placeholder="name" />
+    <label for="username"> username: </label>
+    <input
+      id="user-name"
+      [(ngModel)]="selectedUser.username"
+      placeholder="username"
+    />
   </div>
 </div>
+
+<table class="table">
+  <thead>
+    <h2>Ceta</h2>
+    <tr>
+      <th>id</th>
+      <th>Name</th>
+      <th>UserName</th>
+      <th>email</th>
+      <th>Address</th>
+      <th>Phone</th>
+      <th>Website</th>
+      <th>Company</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users">
+      <td>{{ user.id }}</td>
+      <td>
+        <button
+          [class.selected]="user === selectedUser"
+          type="button"
+          (click)="onSelect(user)"
+        >
+          <span class="badge">{{ user.id }}</span>
+          <span class="name">{{ user.name }}</span>
+        </button>
+      </td>
+      <td>
+        <button
+          [class.selected]="user === selectedUser"
+          type="button"
+          (click)="onSelect(user)"
+        >
+          <span class="username">{{ user.username }}</span>
+        </button>
+      </td>
+
+      <td>
+        <button
+          [class.selected]="user === selectedUser"
+          type="button"
+          (click)="onSelect(user)"
+        >
+          <span class="email">{{ user.email }}</span>
+        </button>
+      </td>
+      <td>
+        {{ user.address.street }}, {{ user.address.suite }},
+        {{ user.address.city }}, {{ user.address.zipcode }}, lat:
+        {{ user.address.geo.lat }}, long:
+        {{ user.address.geo.lng }}
+      </td>
+      <td>{{ user.phone }}</td>
+      <td>{{ user.website }}</td>
+      <td>{{ user.company.catchPhrase }}</td>
+    </tr>
+  </tbody>
+</table>

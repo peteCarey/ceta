@@ -3,12 +3,18 @@ export interface IUser {
   name: string;
   username: string;
   email: string;
+  address: any;
   street: string;
   suite: string;
   city: string;
   zipcode: string;
-  geo: string;
+  geo: any;
+  lat: string;
+  lng: string;
   phone: string;
   website: string;
-  company: string;
+  company: any;
+  _name: string;
+  catchPhrase: string;
+  bs: string;
 }

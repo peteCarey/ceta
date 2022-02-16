@@ -26,6 +26,7 @@ export class UsersComponent implements OnInit {
       next: (users) => {
         this.users = users;
         console.log(this.users);
+        console.log(this.users[0].address);
       },
       error: (err) => (this.errorMessage = err),
     });
