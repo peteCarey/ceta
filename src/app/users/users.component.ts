@@ -36,4 +36,19 @@ export class UsersComponent implements OnInit {
   onSelect(user: IUser): void {
     this.selectedUser = user;
   }
+
+  add(name: string): void {
+    name = name.trim();
+    if (!name) {
+      return;
+    }
+    this.userService.addUser({ name } as IUser).subscribe((user) => {
+      this.users.push(user);
+    });
+  }
+
+  delete(users: IUser): void {
+    this.users = this.users.filter((h) => h !== users);
+    this.userService.deleteUser(users.id).subscribe();
+  }
 }

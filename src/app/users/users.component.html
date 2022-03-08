@@ -1,13 +1,29 @@
 <h2>My Users</h2>
 <ul class="users">
   <li *ngFor="let user of users">
-    <button
+    <a routerLink="/detail/{{ user.id }}">
+      <!--  <button
       [class.selected]="user === selectedUser"
       type="button"
       (click)="onSelect(user)"
     >
-      <span class="badge">{{ user.id }}</span>
-      <span class="name">{{ user.name }}</span>
+ -->
+      <span class="badge">{{ user.id }}</span
+      >{{ user.name }}</a
+    >
+    <span class="name">{{ user.name }}</span>
+    <!--Added Monday 07032022-->
+    <span class="email">{{ user.email }}</span>
+    <span class="email">{{ user.address.street }}</span>
+    <!--    </button> -->
+
+    <button
+      type="button"
+      class="delete"
+      title="delete user"
+      (click)="delete(user)"
+    >
+      x
     </button>
   </li>
 </ul>
@@ -18,13 +34,34 @@
   <div>
     <label for="name"> name: </label>
     <input id="name" [(ngModel)]="selectedUser.name" placeholder="name" />
+
     <label for="username"> username: </label>
     <input
       id="user-name"
       [(ngModel)]="selectedUser.username"
       placeholder="username"
     />
+
+    <label for="email"> email: </label>
+    <input id="email" [(ngModel)]="selectedUser.email" placeholder="email" />
   </div>
+</div>
+
+<div>
+  <label for="new-user">User name: </label>
+  <input id="new-user" #userName />
+
+  <label for="new-user">email: </label>
+  <input id="new-user" #email />
+
+  <!-- (click) passes input value to add() and then clears the input -->
+  <button
+    type="button"
+    class="add-button"
+    (click)="add(userName.value); userName.value = ''"
+  >
+    Add user
+  </button>
 </div>
 
 <table class="table">
@@ -39,6 +76,7 @@
       <th>Phone</th>
       <th>Website</th>
       <th>Company</th>
+      <th>Delete</th>
     </tr>
   </thead>
   <tbody>
@@ -82,6 +120,17 @@
       <td>{{ user.phone }}</td>
       <td>{{ user.website }}</td>
       <td>{{ user.company.catchPhrase }}</td>
+      <td>
+        <button
+          type="button"
+          class="delete"
+          title="delete user"
+          (click)="delete(user)"
+        >
+          x
+        </button>
+      </td>
     </tr>
+    <!-- <app-user-detail [user]="selectedUser"></app-user-detail>-->
   </tbody>
 </table>
