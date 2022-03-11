@@ -25,8 +25,10 @@ export class UserService {
   ) {}
 
   getUsers(): Observable<IUser[]> {
+    // const users = of(USERS));
+    // this.messageService.add('UserService: fetched users');
     return this.http.get<IUser[]>(this.userUrl).pipe(
-      tap((_) => this.log('fetched userr')),
+      tap((_) => this.log('fetched users')),
       catchError(this.handleError<IUser[]>('getUsers', []))
     );
   }
@@ -41,16 +43,16 @@ export class UserService {
 
   updateUser(user: IUser): Observable<any> {
     return this.http.put(this.userUrl, user, this.httpOptions).pipe(
-      tap((_) => console.log(`updated user id=${user.id}`)),
+      tap((_) => this.log(`updated user id=${user.id}`)),
       // catchError(this.handleError<any>('updateUser'))
-      catchError(this.handleError<IUser[]>('updateUser', []))
+      catchError(this.handleError<any>('updateUser'))
     );
   }
 
   /** POST: add a new user to the server */
   addUser(user: IUser): Observable<IUser> {
     return this.http.post<IUser>(this.userUrl, user, this.httpOptions).pipe(
-      tap((newUser: IUser) => console.log(`added user w/ id=${newUser.id}`)),
+      tap((newUser: IUser) => this.log(`added user w/ id=${newUser.id}`)),
       catchError(this.handleError<IUser>('addUser'))
     );
   }
@@ -60,8 +62,7 @@ export class UserService {
     const url = `${this.userUrl}/${id}`;
 
     return this.http.delete<IUser>(url, this.httpOptions).pipe(
-      tap((_) => console.log(`deleted user id=${id}`)),
-      // catchError(this.handleError<User>('deleteUser'))
+      tap((_) => this.log(`deleted user id=${id}`)),
       catchError(this.handleError<IUser>('deleteUser'))
     );
   }

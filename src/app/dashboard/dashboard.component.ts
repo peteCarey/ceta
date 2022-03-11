@@ -5,7 +5,7 @@ import { UserService } from '../user.service';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css'],
+  styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
   users: IUser[] = [];
@@ -17,8 +17,7 @@ export class DashboardComponent implements OnInit {
   }
 
   getUsers(): void {
-    this.userService
-      .getUsers()
-      .subscribe((users) => (this.users = users.slice(1, 5)));
+    this.userService.getUsers().subscribe((users) => (this.users = users));
+    //  .subscribe((users) => (this.users = users.slice(1, 5)));
   }
 }
