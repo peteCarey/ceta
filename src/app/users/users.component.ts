@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 
 import { UserService } from '../user.service';
 import { IUser } from '../user';
+import { MessageService } from '../message.service';
 
 @Component({
   selector: 'app-users',
@@ -11,6 +12,7 @@ import { IUser } from '../user';
 })
 export class UsersComponent implements OnInit {
   sub!: Subscription;
+  selectedUser?: IUser;
   users: IUser[] = [];
   errorMessage = '';
   /*
@@ -19,7 +21,10 @@ export class UsersComponent implements OnInit {
     name: 'Windstorm',
   };
   */
-  constructor(private userService: UserService) {}
+  constructor(
+    private userService: UserService,
+    private messageService: MessageService
+  ) {}
 
   ngOnInit(): void {
     this.sub = this.userService.getUsers().subscribe({
@@ -32,8 +37,27 @@ export class UsersComponent implements OnInit {
     });
   }
 
-  selectedUser?: IUser;
   onSelect(user: IUser): void {
     this.selectedUser = user;
+    this.messageService.add(`UsersComponent: Selected user id=${user.id}`);
+  }
+
+  getUsers(): void {
+    this.userService.getUsers().subscribe((users) => (this.users = users));
+  }
+
+  add(name: string): void {
+    name = name.trim();
+    if (!name) {
+      return;
+    }
+    this.userService.addUser({ name } as IUser).subscribe((user) => {
+      this.users.push(user);
+    });
+  }
+
+  delete(users: IUser): void {
+    this.users = this.users.filter((h) => h !== users);
+    this.userService.deleteUser(users.id).subscribe();
   }
 }
