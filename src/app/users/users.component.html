@@ -1,32 +1,4 @@
 <h2>My Users</h2>
-<ul class="users">
-  <li *ngFor="let user of users">
-    <a routerLink="/detail/{{ user.id }}">
-      <!--  <button
-      [class.selected]="user === selectedUser"
-      type="button"
-      (click)="onSelect(user)"
-    >
- -->
-      <span class="badge">{{ user.id }}</span
-      >{{ user.name }}</a
-    >
-    <span class="name">{{ user.name }}</span>
-    <!--Added Monday 07032022-->
-    <span class="email">{{ user.email }}</span>
-    <span class="email">{{ user.address.street }}</span>
-    <!--    </button> -->
-
-    <button
-      type="button"
-      class="delete"
-      title="delete user"
-      (click)="delete(user)"
-    >
-      x
-    </button>
-  </li>
-</ul>
 
 <div *ngIf="selectedUser">
   <h2>{{ selectedUser.name | uppercase }} Details</h2>
@@ -58,7 +30,7 @@
   <button
     type="button"
     class="add-button"
-    (click)="add(userName.value); userName.value = ''"
+    (click)="add(userName.value, email.value); userName.value = ''"
   >
     Add user
   </button>

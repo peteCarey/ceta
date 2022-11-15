@@ -13,7 +13,7 @@ import { MessageService } from './message.service';
   providedIn: 'root',
 })
 export class UserService {
-  private userUrl = 'https://jsonplaceholder.typicode.com/users';
+  private userUrl = 'assets/users.json';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
@@ -28,7 +28,7 @@ export class UserService {
     // const users = of(USERS));
     // this.messageService.add('UserService: fetched users');
     return this.http.get<IUser[]>(this.userUrl).pipe(
-      tap((_) => this.log('fetched users')),
+      tap((_) => this.log('fetched users1')),
       catchError(this.handleError<IUser[]>('getUsers', []))
     );
   }
@@ -70,7 +70,7 @@ export class UserService {
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       // TODO: send the error to remote logging infrastructure
-      console.error(error); // log to console instead
+      console.log(error); // log to console instead
 
       // TODO: better job of transforming error for user consumption
       this.log(`${operation} failed: ${error.message}`);

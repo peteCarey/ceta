@@ -46,14 +46,36 @@ export class UsersComponent implements OnInit {
     this.userService.getUsers().subscribe((users) => (this.users = users));
   }
 
-  add(name: string): void {
+  add(name: string, email: string): void {
+    debugger;
     name = name.trim();
     if (!name) {
       return;
     }
-    this.userService.addUser({ name } as IUser).subscribe((user) => {
-      this.users.push(user);
+    //this.userService.addUser({ name } as IUser).subscribe((user) => {
+    // this.users.push(user);
+    this.users.push({
+      id: 999,
+      name: name,
+      username: '',
+      email: email,
+      address: undefined,
+      street: '',
+      suite: '',
+      city: '',
+      zipcode: '',
+      geo: undefined,
+      lat: '',
+      lng: '',
+      phone: '',
+      website: '',
+      company: undefined,
+      _name: '',
+      catchPhrase: '',
+      bs: '',
     });
+    console.log('test ' + JSON.stringify(this.users));
+    // });
   }
 
   delete(users: IUser): void {
