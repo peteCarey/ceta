@@ -46,7 +46,8 @@ export class UsersComponent implements OnInit {
     this.userService.getUsers().subscribe((users) => (this.users = users));
   }
 
-  add(name: string, email: string): void {
+  add(name: string, username: string, email: string, address: string): void {
+    // add({id,name,username, email}): void {
     debugger;
     name = name.trim();
     if (!name) {
@@ -54,12 +55,13 @@ export class UsersComponent implements OnInit {
     }
     //this.userService.addUser({ name } as IUser).subscribe((user) => {
     // this.users.push(user);
+
     this.users.push({
-      id: 999,
+      id: -1,
       name: name,
-      username: '',
+      username: username,
       email: email,
-      address: undefined,
+      address: address,
       street: '',
       suite: '',
       city: '',
@@ -81,5 +83,6 @@ export class UsersComponent implements OnInit {
   delete(users: IUser): void {
     this.users = this.users.filter((h) => h !== users);
     this.userService.deleteUser(users.id).subscribe();
+    console.log(this.users);
   }
 }
