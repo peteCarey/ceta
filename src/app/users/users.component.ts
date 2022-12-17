@@ -28,14 +28,6 @@ export class UsersComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    /*  this.sub = this.userService.getUsers().subscribe({
-      next: (users) => {
-        this.users = users;
-        console.log(this.users);
-        console.log(this.users[0].address);
-      },
-      error: (err) => (this.errorMessage = err),
-    });*/
     this.getUsers();
   }
 
@@ -49,7 +41,6 @@ export class UsersComponent implements OnInit {
   }
 
   add(
-    //id: number,
     name: string,
     username: string,
     email: string,
@@ -61,10 +52,8 @@ export class UsersComponent implements OnInit {
     lng: string,
     phone: string,
     website: string,
-    company: string
+    catchPhrase: string
   ): void {
-    // add({id,name,username, email}): void {
-    debugger;
     name = name.trim();
     if (!name) {
       return;
@@ -93,8 +82,8 @@ export class UsersComponent implements OnInit {
       phone: phone,
       website: website,
       company: {
-        _name: '',
-        catchPhrase: '',
+        name: name,
+        catchPhrase: catchPhrase,
         bs: '',
       },
       street: '',
@@ -109,9 +98,6 @@ export class UsersComponent implements OnInit {
       bs: '',
     });
     console.log('test ' + JSON.stringify(this.users));
-    // this.getUsers();*/
-    //   });
-    //  });
   }
   delete(users: IUser): void {
     this.users = this.users.filter((h) => h !== users);

@@ -13,9 +13,6 @@
   <label for="new-email">email: </label>
   <input id="new-email" #email />
 
-  <label for="Address"> Address: </label>
-  <input id="address" #address />
-
   <label for="Street"> Street: </label>
   <input id="street" #street />
 
@@ -39,8 +36,8 @@
 
   <label for="website"> website: </label>
   <input id="website" #website />
-  <label for="company"> company: </label>
-  <input id="company" #company />
+  <label for="catchPhrase"> CatchPhrase: </label>
+  <input id="catchPhrase" #catchPhrase />
 </div>
 <button
   type="button"
@@ -58,7 +55,7 @@
       lng.value,
       phone.value,
       website.value,
-      company.value
+      catchPhrase.value
     )
   "
 >
@@ -95,7 +92,7 @@
       [(ngModel)]="selectedUser.website"
       placeholder="website"
     />
-    <label for="company"> company: </label>
+    <label for="Company"> Company: </label>
     <input
       id="company"
       [(ngModel)]="selectedUser.company"
@@ -159,7 +156,10 @@
       </td>
       <td>{{ user.phone }}</td>
       <td>{{ user.website }}</td>
-      <td>{{ user.company.catchPhrase }}</td>
+      <td>
+        {{ user.company.name }}, {{ user.company.catchPhrase }},
+        {{ user.company.bs }}
+      </td>
       <td>
         <button
           [class.selected]="user === selectedUser"
