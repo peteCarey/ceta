@@ -1,3 +1,69 @@
+<!-- (click) passes input value to add() and then clears the input 
+     (click)="add(users)"
+  userName.value = ''; email.value = ''-->
+<h2>Add User</h2>
+
+<div>
+  <label for="name"> Name: </label>
+  <input id="name" #name />
+
+  <label for="new-user">User NAME: </label>
+  <input id="new-user" #userName />
+
+  <label for="new-email">email: </label>
+  <input id="new-email" #email />
+
+  <label for="Address"> Address: </label>
+  <input id="address" #address />
+
+  <label for="Street"> Street: </label>
+  <input id="street" #street />
+
+  <label for="Suite"> Suite: </label>
+  <input id="suite" #suite />
+
+  <label for="City"> City: </label>
+  <input id="city" #city />
+
+  <label for="Zipcode"> Zipcode: </label>
+  <input id="zipcode" #zipcode />
+
+  <label for="Lat"> Lat: </label>
+  <input id="lat" #lat />
+
+  <label for="Lng"> Lng: </label>
+  <input id="lng" #lng />
+
+  <label for="phone"> phone: </label>
+  <input id="phone" #phone />
+
+  <label for="website"> website: </label>
+  <input id="website" #website />
+  <label for="company"> company: </label>
+  <input id="company" #company />
+</div>
+<button
+  type="button"
+  class="add-button"
+  (click)="
+    add(
+      name.value,
+      userName.value,
+      email.value,
+      street.value,
+      suite.value,
+      city.value,
+      zipcode.value,
+      lat.value,
+      lng.value,
+      phone.value,
+      website.value,
+      company.value
+    )
+  "
+>
+  Add User
+</button>
 <div *ngIf="selectedUser">
   <h2>{{ selectedUser.name | uppercase }} Details</h2>
   <div>id: {{ selectedUser.id }}</div>
@@ -14,8 +80,8 @@
 
     <label for="email"> email: </label>
     <input id="email" [(ngModel)]="selectedUser.email" placeholder="email" />
-    <label for="Address"> Address: </label>
 
+    <label for="Address"> Address: </label>
     <input
       id="address"
       [(ngModel)]="selectedUser.address"
@@ -36,40 +102,6 @@
       placeholder="company"
     />
   </div>
-</div>
-<h2>Add User</h2>
-<div>
-  <label for="name"> Name: </label>
-  <input id="name" #name />
-
-  <label for="new-user">User NAME: </label>
-  <input id="new-user" #userName />
-
-  <label for="new-email">email: </label>
-  <input id="new-email" #email />
-
-  <label for="Address"> Address: </label>
-  <input id="address" #address />
-
-  <label for="phone"> phone: </label>
-  <input id="phone" #phone />
-
-  <label for="website"> website: </label>
-  <input id="website" #website />
-  <label for="company"> company: </label>
-  <input id="company" #company />
-
-  <!-- (click) passes input value to add() and then clears the input 
-     (click)="add(users)"
-  userName.value = ''; email.value = ''-->
-
-  <button
-    type="button"
-    class="add-button"
-    (click)="add(name.value, userName.value, email.value, address.value)"
-  >
-    Add User
-  </button>
 </div>
 
 <table class="table">
@@ -138,6 +170,7 @@
         </button>
       </td>
     </tr>
+
     <!-- <app-user-detail [user]="selectedUser"></app-user-detail>-->
   </tbody>
 </table>

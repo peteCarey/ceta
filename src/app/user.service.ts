@@ -27,6 +27,7 @@ export class UserService {
   getUsers(): Observable<IUser[]> {
     // const users = of(USERS));
     // this.messageService.add('UserService: fetched users');
+    console.log('user service get users');
     return this.http.get<IUser[]>(this.userUrl).pipe(
       tap((_) => this.log('fetched users1')),
       catchError(this.handleError<IUser[]>('getUsers', []))
@@ -51,8 +52,11 @@ export class UserService {
 
   /** POST: add a new user to the server */
   addUser(user: IUser): Observable<IUser> {
+    debugger;
+    console.log('add user in Service');
     return this.http.post<IUser>(this.userUrl, user, this.httpOptions).pipe(
-      tap((newUser: IUser) => this.log(`added user w/ id=${newUser.id}`)),
+      // tap((newUser: IUser) => this.log(`added user w/ id=${newUser.id}`)),
+      tap((newUser: IUser) => this.log(`added user w/ id=12`)),
       catchError(this.handleError<IUser>('addUser'))
     );
   }

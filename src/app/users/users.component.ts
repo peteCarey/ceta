@@ -15,6 +15,7 @@ export class UsersComponent implements OnInit {
   selectedUser?: IUser;
   users: IUser[] = [];
   errorMessage = '';
+  id = 10;
   /*
   user: User = {
     id: 1,
@@ -27,14 +28,15 @@ export class UsersComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.sub = this.userService.getUsers().subscribe({
+    /*  this.sub = this.userService.getUsers().subscribe({
       next: (users) => {
         this.users = users;
         console.log(this.users);
         console.log(this.users[0].address);
       },
       error: (err) => (this.errorMessage = err),
-    });
+    });*/
+    this.getUsers();
   }
 
   onSelect(user: IUser): void {
@@ -46,22 +48,55 @@ export class UsersComponent implements OnInit {
     this.userService.getUsers().subscribe((users) => (this.users = users));
   }
 
-  add(name: string, username: string, email: string, address: string): void {
+  add(
+    //id: number,
+    name: string,
+    username: string,
+    email: string,
+    street: string,
+    suite: string,
+    city: string,
+    zipcode: string,
+    lat: string,
+    lng: string,
+    phone: string,
+    website: string,
+    company: string
+  ): void {
     // add({id,name,username, email}): void {
     debugger;
     name = name.trim();
     if (!name) {
       return;
     }
-    //this.userService.addUser({ name } as IUser).subscribe((user) => {
-    // this.users.push(user);
-
+    /*  this.userService.addUser({ name } as IUser).subscribe((user) => {
+      debugger;
+      console.log(user);
+      this.users.push(user);
+  */
+    this.id = this.id + 1;
     this.users.push({
-      id: -1,
+      id: this.id,
       name: name,
       username: username,
       email: email,
-      address: address,
+      address: {
+        street: street,
+        suite: suite,
+        city: city,
+        zipcode: zipcode,
+        geo: {
+          lat: lat,
+          lng: lng,
+        },
+      },
+      phone: phone,
+      website: website,
+      company: {
+        _name: '',
+        catchPhrase: '',
+        bs: '',
+      },
       street: '',
       suite: '',
       city: '',
@@ -69,17 +104,15 @@ export class UsersComponent implements OnInit {
       geo: undefined,
       lat: '',
       lng: '',
-      phone: '',
-      website: '',
-      company: undefined,
       _name: '',
       catchPhrase: '',
       bs: '',
     });
     console.log('test ' + JSON.stringify(this.users));
-    // });
+    // this.getUsers();*/
+    //   });
+    //  });
   }
-
   delete(users: IUser): void {
     this.users = this.users.filter((h) => h !== users);
     this.userService.deleteUser(users.id).subscribe();
