@@ -52,7 +52,9 @@ export class UsersComponent implements OnInit {
     lng: string,
     phone: string,
     website: string,
-    catchPhrase: string
+    _name: string,
+    catchPhrase: string,
+    bs: string
   ): void {
     name = name.trim();
     if (!name) {
@@ -84,7 +86,7 @@ export class UsersComponent implements OnInit {
       company: {
         name: name,
         catchPhrase: catchPhrase,
-        bs: '',
+        bs: bs,
       },
       street: '',
       suite: '',

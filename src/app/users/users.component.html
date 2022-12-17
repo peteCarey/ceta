@@ -36,8 +36,13 @@
 
   <label for="website"> website: </label>
   <input id="website" #website />
+
+  <label for="_name"> _name: </label>
+  <input id="_name" #_name />
   <label for="catchPhrase"> CatchPhrase: </label>
   <input id="catchPhrase" #catchPhrase />
+  <label for="bs"> bs: </label>
+  <input id="bs" #bs />
 </div>
 <button
   type="button"
@@ -55,7 +60,9 @@
       lng.value,
       phone.value,
       website.value,
-      catchPhrase.value
+      _name.value,
+      catchPhrase.value,
+      bs.value
     )
   "
 >
