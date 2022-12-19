@@ -50,7 +50,7 @@ export class UserService {
     );
   }
 
-  /** POST: add a new user to the server */
+  /** POST: add a new user to the server 
   addUser(user: IUser): Observable<IUser> {
     debugger;
     console.log('add user in Service');
@@ -60,21 +60,22 @@ export class UserService {
       catchError(this.handleError<IUser>('addUser'))
     );
   }
-
-  /** DELETE: delete the user from the server */
+  */
+  /** DELETE: delete the user from the server 
   deleteUser(id: number): Observable<IUser> {
     const url = `${this.userUrl}/${id}`;
+    console.log(`url is ${url}`);
 
     return this.http.delete<IUser>(url, this.httpOptions).pipe(
       tap((_) => this.log(`deleted user id=${id}`)),
       catchError(this.handleError<IUser>('deleteUser'))
     );
   }
-
+*/
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       // TODO: send the error to remote logging infrastructure
-      console.log(error); // log to console instead
+      console.log('test', error); // log to console instead
 
       // TODO: better job of transforming error for user consumption
       this.log(`${operation} failed: ${error.message}`);

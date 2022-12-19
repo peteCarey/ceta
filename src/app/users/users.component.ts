@@ -84,7 +84,7 @@ export class UsersComponent implements OnInit {
       phone: phone,
       website: website,
       company: {
-        name: name,
+        name: _name,
         catchPhrase: catchPhrase,
         bs: bs,
       },
@@ -103,7 +103,8 @@ export class UsersComponent implements OnInit {
   }
   delete(users: IUser): void {
     this.users = this.users.filter((h) => h !== users);
-    this.userService.deleteUser(users.id).subscribe();
-    console.log(this.users);
+
+    // this.userService.deleteUser(users.id).subscribe();
+    console.log('users id deleted is', users.id);
   }
 }
