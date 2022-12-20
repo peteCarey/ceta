@@ -101,6 +101,7 @@ export class UsersComponent implements OnInit {
     });
     console.log('test ' + JSON.stringify(this.users));
   }
+
   delete(users: IUser): void {
     this.users = this.users.filter((h) => h !== users);
 

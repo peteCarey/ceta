@@ -1,112 +1,6 @@
 <!-- (click) passes input value to add() and then clears the input 
      (click)="add(users)"
   userName.value = ''; email.value = ''-->
-<h2>Add User</h2>
-
-<div>
-  <label for="name"> Name: </label>
-  <input id="name" #name />
-
-  <label for="new-user">User NAME: </label>
-  <input id="new-user" #userName />
-
-  <label for="new-email">email: </label>
-  <input id="new-email" #email />
-
-  <label for="Street"> Street: </label>
-  <input id="street" #street />
-
-  <label for="Suite"> Suite: </label>
-  <input id="suite" #suite />
-
-  <label for="City"> City: </label>
-  <input id="city" #city />
-
-  <label for="Zipcode"> Zipcode: </label>
-  <input id="zipcode" #zipcode />
-
-  <label for="Lat"> Lat: </label>
-  <input id="lat" #lat />
-
-  <label for="Lng"> Lng: </label>
-  <input id="lng" #lng />
-
-  <label for="phone"> phone: </label>
-  <input id="phone" #phone />
-
-  <label for="website"> website: </label>
-  <input id="website" #website />
-
-  <label for="_name"> Company Name: </label>
-  <input id="_name" #_name />
-  <label for="catchPhrase"> CatchPhrase: </label>
-  <input id="catchPhrase" #catchPhrase />
-  <label for="bs"> bs: </label>
-  <input id="bs" #bs />
-</div>
-<button
-  type="button"
-  class="add-button"
-  (click)="
-    add(
-      name.value,
-      userName.value,
-      email.value,
-      street.value,
-      suite.value,
-      city.value,
-      zipcode.value,
-      lat.value,
-      lng.value,
-      phone.value,
-      website.value,
-      _name.value,
-      catchPhrase.value,
-      bs.value
-    )
-  "
->
-  Add User
-</button>
-<div *ngIf="selectedUser">
-  <h2>{{ selectedUser.name | uppercase }} Details</h2>
-  <div>id: {{ selectedUser.id }}</div>
-  <div>
-    <label for="name"> Name: </label>
-    <input id="name" [(ngModel)]="selectedUser.name" placeholder="name" />
-
-    <label for="username"> Username: </label>
-    <input
-      id="user-name"
-      [(ngModel)]="selectedUser.username"
-      placeholder="username"
-    />
-
-    <label for="email"> email: </label>
-    <input id="email" [(ngModel)]="selectedUser.email" placeholder="email" />
-
-    <label for="Address"> Address: </label>
-    <input
-      id="address"
-      [(ngModel)]="selectedUser.address"
-      placeholder="address"
-    />
-    <label for="phone"> phone: </label>
-    <input id="phone" [(ngModel)]="selectedUser.phone" placeholder="phone" />
-    <label for="website"> website: </label>
-    <input
-      id="website"
-      [(ngModel)]="selectedUser.website"
-      placeholder="website"
-    />
-    <label for="Company"> Company: </label>
-    <input
-      id="company"
-      [(ngModel)]="selectedUser.company"
-      placeholder="company"
-    />
-  </div>
-</div>
 
 <table class="table">
   <thead>
@@ -181,3 +75,157 @@
     <!-- <app-user-detail [user]="selectedUser"></app-user-detail>-->
   </tbody>
 </table>
+
+<div *ngIf="selectedUser" class="selected">
+  <h2>{{ selectedUser.name | uppercase }} Details</h2>
+  <div>id: {{ selectedUser.id }}</div>
+  <div>
+    <label for="name"> Name: </label>
+    <input id="name" [(ngModel)]="selectedUser.name" placeholder="name" />
+
+    <label for="username"> Username: </label>
+    <input
+      id="user-name"
+      [(ngModel)]="selectedUser.username"
+      placeholder="username"
+    />
+
+    <label for="email"> email: </label>
+    <input id="email" [(ngModel)]="selectedUser.email" placeholder="email" />
+
+    <label for="street"> Street: </label>
+    <input
+      id="street"
+      [(ngModel)]="selectedUser.address.street"
+      placeholder="street"
+    />
+
+    <label for="suite"> Suite: </label>
+    <input
+      id="suite"
+      [(ngModel)]="selectedUser.address.suite"
+      placeholder="suite"
+    />
+
+    <label for="city"> City: </label>
+    <input
+      id="city"
+      [(ngModel)]="selectedUser.address.city"
+      placeholder="city"
+    />
+
+    <label for="zipcode"> Zipcode: </label>
+    <input
+      id="zipcode"
+      [(ngModel)]="selectedUser.address.zipcode"
+      placeholder="zipcode"
+    />
+
+    <label for="lat"> Lat: </label>
+    <input
+      id="lat"
+      [(ngModel)]="selectedUser.address.geo.lat"
+      placeholder="lat"
+    />
+
+    <label for="lng"> Lng: </label>
+    <input
+      id="lng"
+      [(ngModel)]="selectedUser.address.geo.lng"
+      placeholder="lng"
+    />
+
+    <label for="phone"> phone: </label>
+    <input id="phone" [(ngModel)]="selectedUser.phone" placeholder="phone" />
+    <label for="website"> website: </label>
+    <input
+      id="website"
+      [(ngModel)]="selectedUser.website"
+      placeholder="website"
+    />
+
+    <label for="_name"> Company Name: </label>
+    <input
+      id="_name"
+      [(ngModel)]="selectedUser.company.name"
+      placeholder="name"
+    />
+    <label for="catchPhrase"> CatchPhrase: </label>
+    <input
+      id="catchPhrase"
+      [(ngModel)]="selectedUser.company.catchPhrase"
+      placeholder="catchPhrase"
+    />
+    <label for="bs"> bs: </label>
+    <input id="bs" [(ngModel)]="selectedUser.company.bs" placeholder="bs" />
+  </div>
+</div>
+
+<div class="selected">
+  <h2>Add User</h2>
+
+  <label for="name"> Name: </label>
+  <input id="name" #name />
+
+  <label for="new-user">User NAME: </label>
+  <input id="new-user" #userName />
+
+  <label for="new-email">email: </label>
+  <input id="new-email" #email />
+
+  <label for="Street"> Street: </label>
+  <input id="street" #street />
+
+  <label for="Suite"> Suite: </label>
+  <input id="suite" #suite />
+
+  <label for="City"> City: </label>
+  <input id="city" #city />
+
+  <label for="Zipcode"> Zipcode: </label>
+  <input id="zipcode" #zipcode />
+
+  <label for="Lat"> Lat: </label>
+  <input id="lat" #lat />
+
+  <label for="Lng"> Lng: </label>
+  <input id="lng" #lng />
+
+  <label for="phone"> phone: </label>
+  <input id="phone" #phone />
+
+  <label for="website"> website: </label>
+  <input id="website" #website />
+
+  <label for="_name"> Company Name: </label>
+  <input id="_name" #_name />
+  <label for="catchPhrase"> CatchPhrase: </label>
+  <input id="catchPhrase" #catchPhrase />
+  <label for="bs"> bs: </label>
+  <input id="bs" #bs />
+
+  <button
+    type="button"
+    class="add-button"
+    (click)="
+      add(
+        name.value,
+        userName.value,
+        email.value,
+        street.value,
+        suite.value,
+        city.value,
+        zipcode.value,
+        lat.value,
+        lng.value,
+        phone.value,
+        website.value,
+        _name.value,
+        catchPhrase.value,
+        bs.value
+      )
+    "
+  >
+    Add User
+  </button>
+</div>
